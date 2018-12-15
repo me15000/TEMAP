@@ -1,0 +1,53 @@
+<!--index.wxml-->
+<view class="container">
+  <map class="map" id="map" longitude="{{longitude||113.324520}}" latitude="{{latitude||23.099994}}" scale="14" markers="{{markers}}" show-location="true" enable-zoom="true" bindmarkertap="bindmarkertap" bindregionchange="bindregionchange"></map>
+
+  <scroll-view class="main" scroll-y scroll-top="{{scrollTop}}">
+
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+    <view style="50rpx">a</view>
+
+  </scroll-view>
+</view>

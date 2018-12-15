@@ -1,0 +1,38 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/publish/index",
+    "pages/detail/index",
+    "pages/my/index"
+  ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/style/imgs/nav-icon-home.png",
+        "selectedIconPath": "/style/imgs/nav-icon-home-sel.png"
+      },
+      {
+        "pagePath": "pages/publish/index",
+        "text": "发布",
+        "iconPath": "/style/imgs/nav-icon-publish.png",
+        "selectedIconPath": "/style/imgs/nav-icon-publish-sel.png"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的",
+        "iconPath": "/style/imgs/nav-icon-my.png",
+        "selectedIconPath": "/style/imgs/nav-icon-my-sel.png"
+      }
+    ]
+  },
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarTitleText": "特价地图",
+
+    "navigationBarBackgroundColor": "#ff5722",    
+    "navigationBarTextStyle": "light"
+  }
+}
