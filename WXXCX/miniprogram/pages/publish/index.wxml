@@ -1,2 +1,77 @@
 <!--pages/publish/index.wxml-->
-<text>pages/publish/index.wxml</text>
+<form bindsubmit='formSubmit' bindreset="formReset" report-submit="true">
+  <view class="weui-cells">
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+
+        <view class="weui-uploader">
+          <view class="weui-uploader__hd">
+            <view class="weui-uploader__title">上传真相图片(可选)</view>
+            <view class="weui-uploader__info">{{files.length}}/3</view>
+          </view>
+          <view class="weui-uploader__bd">
+            <view class="weui-uploader__files" id="uploaderFiles">
+              <block wx:for="{{files}}" wx:key="*this">
+                <view class="weui-uploader__file" bindtap="previewImage" id="{{item}}">
+                  <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
+                </view>
+              </block>
+
+              <!--
+              <view class="weui-uploader__file">
+                <image class="weui-uploader__img" src="../images/pic_160.png" mode="aspectFill" />
+              </view>              
+              -->
+
+            </view>
+            <view wx:if="{{!hiddupload}}" class="weui-uploader__input-box">
+              <view class="weui-uploader__input" bindtap="chooseImage"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="weui-cells__title">设置一个简短的标题(必须)</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__bd">
+        <input name="title" value='{{title}}'maxlength="10" class="weui-input" placeholder="10个字以内" />
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells__title">选择类型(必须)</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_select"> 
+      <view class="weui-cell__bd" style='padding-left:15px;'>
+        <picker name="category" bindchange="bindCategoryChange" range-key="name" value="{{categoryIndex}}" range="{{categorys}}">
+          <view class="weui-select weui-select_in-select-after">{{categoryIndex>=0?categorys[categoryIndex].name:''}}</view>
+        </picker>
+      </view>
+    </view>
+  </view>
+
+  <view class="weui-cells__title">位置(必须)</view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+    
+      <view class="weui-cell__bd">
+        <input class="weui-input" style="color:#999" disabled='true' placeholder="" value="{{address||'('+latitude+','+longitude+')'}}" />
+      </view>
+      <view class="weui-cell__ft">
+        <view bindtap="setpoint" class="weui-vcode-btn">选择位置</view>
+      </view>
+    </view>
+  </view>
+
+
+  <view style="width:96%;margin:10px auto">
+    <button class="weui-btn" form-type='submit' type="primary">发布</button>
+    <button class="weui-btn" form-type='reset'>重置</button>
+
+  </view>
+
+</form>

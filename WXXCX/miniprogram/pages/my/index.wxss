@@ -1,1 +1,19 @@
 /* pages/my/index.wxss */
+
+page {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.weui-navbar{
+  background: #f8f8f8;
+}
+
+.weui-tab__content{
+  height: 100%;
+}
+
+.main {
+ height: 100%;
+}
