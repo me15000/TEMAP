@@ -23,6 +23,12 @@ exports.main = async (event, context) => {
   const cmd = db.command;
 
 
+  //删除7天前数据
+  db.collection('info').where({
+    date: cmd.lt(now.getTime() - 7 * 24 * 60 * 60 * 1000)
+  }).remove();
+
+
 
   //let temdate = new Date();
   let temtime = now.getTime() - 1 * 60 * 60 * 1000;
