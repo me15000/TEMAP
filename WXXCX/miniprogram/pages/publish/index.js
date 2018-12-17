@@ -178,7 +178,8 @@ Page({
       catekey,
       lat,
       lng,
-      formid
+      formid,
+      files
     });
   },
 
@@ -224,7 +225,7 @@ Page({
           title: '正在上传图片'
         });
 
-        that.uploadFiles(result_id, files, (arr) => {
+        that.uploadFiles(result_id, data.files, (arr) => {
           wx.cloud.callFunction({
             name: 'publishUpload',
             data: {
