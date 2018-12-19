@@ -69,6 +69,7 @@
 
 
   <view style="width:96%;margin:10px auto">
+    <view style="color:#ccc;font-size:13px;text-align:center">10小时内仅可以发布一条信息，重复发送将覆盖</view>
     <button class="weui-btn" form-type='submit' type="primary">发布</button>
     <button class="weui-btn" form-type='reset'>重置</button>
 

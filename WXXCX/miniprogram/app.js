@@ -4,7 +4,7 @@ function toRad(d) {
 }
 
 let Global = {
-  user:{}
+  user: {}
 };
 
 let AppObject = {
@@ -238,6 +238,26 @@ AppObject.queryGEOData = function(data, callback) {
   });
 };
 
+
+AppObject.removeGEOData = function(data, callback) {
+  getUserInfoMain((info) => {
+    wx.request({
+      url: 'https://api.fun5.cn/GEO/Remove',
+      method: "POST",
+      dataType: "json",
+      data: {
+        data: data,
+        project:"temap",
+        authcode: info.authcode
+      },
+      success: function(res) {
+        callback(res.data);
+      }
+    });
+  });
+};
+
+
 AppObject.getDisance = function(p1, p2) {
   let lat1 = p1.lat,
     lng1 = p1.lng,
@@ -337,7 +357,7 @@ AppObject.initSettingAll = function() {
 
 AppObject.onLaunch = function() {
   getUserInfoMain((info) => {
-    
+
   });
   this.initSettingAll();
 };

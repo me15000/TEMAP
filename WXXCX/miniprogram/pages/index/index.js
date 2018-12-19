@@ -191,7 +191,62 @@ Page({
 
                 app.queryGEOData(qdata, (data) => {
 
+                  if (!(data && data.length)) {
+                    wx.showToast({
+                      title: '暂无数据，请扩大范围',
+                      icon: "none"
+                    })
+                    return;
+                  }
 
+                  let ids = [];
+                  for (var i = 0; i < data.length; i++) {
+                    ids.push(data[i].Member);
+                  }
+
+
+                  wx.cloud.init();
+                  wx.cloud.callFunction({
+                    name: 'querygeolist',
+                    data: {
+                      ids: ids
+                    },
+                    complete: res => {
+                      let resultArray = res.result.result || [];
+                      let deleteids = [];
+                      if (resultArray.length > 0) {
+                        for (var i = 0; i < data.length; i++) {
+                          let nowent = data[i];
+                          let nowid = nowent.Member;
+                          if (!resultArray.includes(nowid)) {
+                            deleteids.push({
+                              lat: nowent.Position.Latitude,
+                              lng: nowent.Position.Longitude,
+                              value: nowent.Member
+                            });
+                          }
+                        }
+                      } else {
+                        for (var i = 0; i < data.length; i++) {
+                          let nowent = data[i];
+                          deleteids.push({
+                            lat: nowent.Position.Latitude,
+                            lng: nowent.Position.Longitude,
+                            value: nowent.Member
+                          });
+                        }
+                      }
+
+                      if (deleteids && deleteids.length) {
+                        app.removeGEOData(deleteids, () => {
+                          console.log('remove success');
+                        });
+                      }
+                    }
+                  });
+
+
+                  console.log(data);
                 });
               }
             });

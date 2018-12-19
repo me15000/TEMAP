@@ -31,7 +31,7 @@ exports.main = async (event, context) => {
 
 
   //let temdate = new Date();
-  let temtime = now.getTime() - 1 * 60 * 60 * 1000;
+  let temtime = now.getTime() - 10 * 60 * 60 * 1000;
   //temdate.setTime(ms);
 
   let qresult = await db.collection('info').where({
@@ -49,7 +49,8 @@ exports.main = async (event, context) => {
     date: req.date,
     lng: req.lng,
     lat: req.lat,
-    location: new db.Geo.Point(req.lng, req.lat)
+    location: new db.Geo.Point(req.lng, req.lat),
+    imgs: []
   };
 
   let result = null;

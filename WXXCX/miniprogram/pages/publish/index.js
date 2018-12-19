@@ -13,28 +13,28 @@ Page({
     latitude: '0',
     longitude: '0',
     categorys: [{
-        key: "oil",
-        "name": "燃油"
-      },
-      {
-        key: "shop",
-        "name": "商店"
-      },
-      {
-        key: "food",
-        "name": "美食"
-      },
-      {
-        key: "other",
-        "name": "其他"
-      }
+      key: "oil",
+      "name": "燃油"
+    },
+    {
+      key: "shop",
+      "name": "商店"
+    },
+    {
+      key: "food",
+      "name": "美食"
+    },
+    {
+      key: "other",
+      "name": "其他"
+    }
     ],
     categoryIndex: -1,
 
     files: []
   },
 
-  bindCategoryChange: function(e) {
+  bindCategoryChange: function (e) {
     console.log('picker country 发生选择改变，携带值为', e.detail.value);
 
     this.setData({
@@ -42,7 +42,7 @@ Page({
     })
   },
 
-  exitsFiles: function(file) {
+  exitsFiles: function (file) {
     let that = this;
     let files = that.data.files;
     for (var i = 0; i < files.length; i++) {
@@ -53,14 +53,14 @@ Page({
     }
     return false;
   },
-  chooseImage: function(e) {
+  chooseImage: function (e) {
 
     var that = this;
     wx.chooseImage({
       count: 3,
       sizeType: ['compressed'],
       sourceType: ['album', 'camera'],
-      success: function(res) {
+      success: function (res) {
         console.log(res);
 
         for (var i = 0; i < res.tempFilePaths.length; i++) {
@@ -83,20 +83,20 @@ Page({
       }
     })
   },
-  previewImage: function(e) {
+  previewImage: function (e) {
     wx.previewImage({
       current: e.currentTarget.id, // 当前显示图片的http链接
       urls: this.data.files // 需要预览的图片http链接列表
     })
   },
 
-  setpoint: function() {
+  setpoint: function () {
     let that = this;
     app.getLocation((r) => {
       wx.chooseLocation({
         latitude: r.latitude,
         longitude: r.longitude,
-        success: function(e) {
+        success: function (e) {
           that.setData({
             latitude: e.latitude,
             longitude: e.longitude,
@@ -107,7 +107,7 @@ Page({
     });
   },
 
-  formReset: function(e) {
+  formReset: function (e) {
     let that = this;
     that.is_submit = false;
     that.setData({
@@ -120,7 +120,7 @@ Page({
     });
   },
 
-  formSubmit: function(e) {
+  formSubmit: function (e) {
     let formid = e.formId;
     let that = this;
     if (that.is_submit) {
@@ -183,7 +183,7 @@ Page({
     });
   },
 
-  submitData: function(data) {
+  submitData: function (data) {
     let that = this;
     wx.cloud.init();
     wx.cloud.callFunction({
@@ -226,14 +226,18 @@ Page({
         });
 
         that.uploadFiles(result_id, data.files, (arr) => {
+         
+         
           wx.cloud.callFunction({
             name: 'publishUpload',
             data: {
               id: result_id,
               imgs: arr
             },
-            complete: res => {
+            complete: r => {
+              console.log('publishUpload complete');
               wx.hideLoading();
+              
             }
           });
         });
@@ -241,11 +245,12 @@ Page({
     });
   },
 
-  uploadFiles: function(result_id, files, callback) {
+  uploadFiles: function (result_id, files, callback) {
     let uploadsucc = [];
     let n = 0;
+    let uploadFun = null;
 
-    let uploadFun = () => {
+    uploadFun = () => {
       let fn = files[n];
       let mat = /\.(png|jpg|gif)/i.exec(fn);
       let ext = mat && mat.length ? mat[0] : '.png';
@@ -263,11 +268,12 @@ Page({
         fail: err => {
           console.log(err);
         },
-        complete: function() {
+        complete: function () {
           n++;
           if (n < files.length) {
             uploadFun();
           } else {
+            console.log('uploadsucc');
             callback(uploadsucc);
           }
         }
@@ -280,56 +286,56 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {
+  onLoad: function (options) {
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {
+  onReady: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function() {
+  onShow: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
    */
-  onHide: function() {
+  onHide: function () {
 
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function() {
+  onUnload: function () {
 
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh: function () {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function() {
+  onReachBottom: function () {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
 
   }
 })
