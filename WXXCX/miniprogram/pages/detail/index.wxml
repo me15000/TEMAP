@@ -6,10 +6,21 @@
 
 
   <view class="button-sp-area">
-    <button style='margin-right:5px;' class="weui-btn mini-btn" type="primary" size="mini">导航</button>
-    <button style='margin-right:5px;' class="weui-btn mini-btn" type="primary" size="mini">分享</button>
-    <button style='margin-right:5px;' class="weui-btn mini-btn" type="default" size="mini">收藏</button>
-    <button style='margin-right:5px;' class="weui-btn mini-btn" type="warn" size="mini">举报</button>
+    <button bindtap="goNavi" style='margin-right:5px;' class="weui-btn mini-btn" type="primary" size="mini">导航</button>
+    <button open-type='share' style='margin-right:5px;' class="weui-btn mini-btn" type="primary" size="mini">分享</button>
+    <button bindtap="doFav" style='margin-right:5px;' class="weui-btn mini-btn" type="default" size="mini">收藏</button>
+    <button style='margin-right:5px;' class="weui-btn mini-btn" type="warn" size="mini">赞赏</button>
+  </view>
+
+  <view class="weui-article">
+    <view class="weui-article__h1">{{info.title}}</view>
+
+    <view class="weui-article__section">
+      <view class="weui-article__title">有图有真相</view>
+      <view class="weui-article__p">
+        <image bindtap="doPreview" data-src="{{item}}" wx:for="{{info.imgs}}" class="weui-article__img" src="{{item}}" mode="aspectFit" style="max-width:100%" />
+      </view>
+    </view>
   </view>
 
 </view>

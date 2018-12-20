@@ -6,7 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    tabs: ["我收藏的", "我发布的"],
+    tabs: ["我的设置","我收藏的", "我发布的"],
     activeIndex: 0,
     sliderOffset: 0,
     sliderLeft: 0
@@ -19,7 +19,7 @@ Page({
     var that = this;
     wx.getSystemInfo({
       success: function (res) {
-        let sliderWidth = res.windowWidth/2;
+        let sliderWidth = res.windowWidth/3;
         that.setData({
           sliderLeft: (res.windowWidth / that.data.tabs.length - sliderWidth) / 2,
           sliderOffset: res.windowWidth / that.data.tabs.length * that.data.activeIndex

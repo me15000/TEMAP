@@ -196,12 +196,12 @@ Page({
         formid: data.formid
       },
       complete: res => {
+        
         if (!res.result.result) {
           wx.showToast({
             title: '发生错误',
             icon: "none"
           });
-          console.log('callFunction test result: ', res);
           return;
         }
 
@@ -220,32 +220,39 @@ Page({
           lng: data.lng
         });
 
+        if (data.files && data.files.length) {
 
-        wx.showLoading({
-          title: '正在上传图片'
-        });
-
-        that.uploadFiles(result_id, data.files, (arr) => {
-         
-         
-          wx.cloud.callFunction({
-            name: 'publishUpload',
-            data: {
-              id: result_id,
-              imgs: arr
-            },
-            complete: r => {
-              console.log('publishUpload complete');
-              wx.hideLoading();
-              
-            }
+          wx.showLoading({
+            title: '正在上传图片'
           });
-        });
+          that.uploadFiles(result_id, data.files, (arr) => {
+            wx.cloud.callFunction({
+              name: 'publishUpload',
+              data: {
+                id: result_id,
+                imgs: arr
+              },
+              complete: r => {
+                console.log('publishUpload complete');
+                wx.hideLoading();
+
+                wx.navigateTo({
+                  url: '/pages/detail/index?id=' + result_id
+                });
+              }
+            });
+          });
+        } else {
+          wx.navigateTo({
+            url: '/pages/detail/index?id=' + result_id
+          });
+        }
       }
     });
   },
 
   uploadFiles: function (result_id, files, callback) {
+
     let uploadsucc = [];
     let n = 0;
     let uploadFun = null;

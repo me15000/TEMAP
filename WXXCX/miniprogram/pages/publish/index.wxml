@@ -38,14 +38,14 @@
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__bd">
-        <input name="title" value='{{title}}'maxlength="10" class="weui-input" placeholder="10个字以内" />
+        <input name="title" value='{{title}}' maxlength="10" class="weui-input" placeholder="10个字以内" />
       </view>
     </view>
   </view>
 
   <view class="weui-cells__title">选择类型(必须)</view>
   <view class="weui-cells weui-cells_after-title">
-    <view class="weui-cell weui-cell_select"> 
+    <view class="weui-cell weui-cell_select">
       <view class="weui-cell__bd" style='padding-left:15px;'>
         <picker name="category" bindchange="bindCategoryChange" range-key="name" value="{{categoryIndex}}" range="{{categorys}}">
           <view class="weui-select weui-select_in-select-after">{{categoryIndex>=0?categorys[categoryIndex].name:''}}</view>
@@ -57,7 +57,7 @@
   <view class="weui-cells__title">位置(必须)</view>
   <view class="weui-cells weui-cells_after-title">
     <view class="weui-cell weui-cell_input weui-cell_vcode">
-    
+
       <view class="weui-cell__bd">
         <input class="weui-input" style="color:#999" disabled='true' placeholder="" value="{{address||'('+latitude+','+longitude+')'}}" />
       </view>
@@ -76,3 +76,10 @@
   </view>
 
 </form>
+
+<view class="weui-footer">
+  <view class="weui-footer__links">
+    <navigator url="" class="weui-footer__link">底部链接</navigator>
+  </view>
+  <view class="weui-footer__text">Copyright © 2008-2016 weui.io</view>
+</view>

@@ -6,10 +6,19 @@
         <view class="weui-navbar__title">{{item}}</view>
       </view>
     </block>
-    <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);width:50%"></view>
+    <view class="weui-navbar__slider" style="left: {{sliderLeft}}px; transform: translateX({{sliderOffset}}px); -webkit-transform: translateX({{sliderOffset}}px);width:33.3333%"></view>
   </view>
   <view class="weui-tab__panel">
     <view class="weui-tab__content" hidden="{{activeIndex != 0}}">
+      设置
+
+      收款码
+      头像
+      昵称等信息
+      
+    </view>
+
+    <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
 
 
       <scroll-view class="main" scroll-y scroll-top="{{scrollTop}}">
@@ -123,7 +132,7 @@
       </scroll-view>
 
     </view>
-    <view class="weui-tab__content" hidden="{{activeIndex != 1}}">
+    <view class="weui-tab__content" hidden="{{activeIndex != 2}}">
 
       <scroll-view class="main" scroll-y scroll-top="{{scrollTop}}">
 
