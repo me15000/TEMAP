@@ -5,6 +5,9 @@ cloud.init()
 
 // 云函数入口函数
 exports.main = async(event, context) => {
+  const wxContext = cloud.getWXContext()
+
+
   let ids = event.ids;
 
   const db = cloud.database();
@@ -14,7 +17,6 @@ exports.main = async(event, context) => {
     _id: cmd.in(ids)
   }).get();
 
-  const wxContext = cloud.getWXContext()
 
   return {
     event,

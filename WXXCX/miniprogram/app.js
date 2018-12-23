@@ -19,7 +19,7 @@ function request(url, data, callback) {
     header: data.header || {
       'content-type': 'application/json'
     },
-    success: function(res) {
+    success: function (res) {
       if (res.statusCode != 200) {
         return;
       }
@@ -28,7 +28,7 @@ function request(url, data, callback) {
         callback(res.data);
       }
     },
-    fail: function() {
+    fail: function () {
 
     }
   })
@@ -36,7 +36,7 @@ function request(url, data, callback) {
 }
 
 
-const updateFormId = function(authcode, formid) {
+const updateFormId = function (authcode, formid) {
   let requestData = {
     method: 'GET',
     data: {
@@ -60,28 +60,28 @@ const updateFormId = function(authcode, formid) {
 
 //获得用户信息
 
-const checkSession = function(callback) {
+const checkSession = function (callback) {
   wx.checkSession({
-    success: function() {
+    success: function () {
       //登录成功
       callback(true);
     },
-    fail: function() {
+    fail: function () {
       //登录态过期
       callback(false);
     }
   });
 }
 
-const userLogin = function(callback, callbackFun) {
+const userLogin = function (callback, callbackFun) {
   wx.login({
-    success: function(res) {
+    success: function (res) {
       callback(res, callbackFun);
     }
   });
 }
 
-const getSetting = function(callback) {
+const getSetting = function (callback) {
   wx.getSetting({
     success: (res) => {
       callback(res);
@@ -92,8 +92,8 @@ const getSetting = function(callback) {
 
 
 
-const getSysInfo = function(callback) {
-  callback = callback || function() {};
+const getSysInfo = function (callback) {
+  callback = callback || function () { };
   let sysinfo = Global.sysinfo;
   if (sysinfo) {
     callback(sysinfo);
@@ -106,10 +106,10 @@ const getSysInfo = function(callback) {
   };
 
   wx.getSystemInfo({
-    success: function(res) {
+    success: function (res) {
       callbakfun(res);
     },
-    fail: function() {
+    fail: function () {
       callbakfun(null);
     }
   })
@@ -118,7 +118,7 @@ const getSysInfo = function(callback) {
 
 
 //用户登录并获得用户信息
-const userLoginAndGetUserInfo = function(callback) {
+const userLoginAndGetUserInfo = function (callback) {
 
   let testData = () => {
     if (Global.user) {
@@ -184,7 +184,7 @@ const userLoginAndGetUserInfo = function(callback) {
   });
 }
 
-const getUserInfoMain = function(callback) {
+const getUserInfoMain = function (callback) {
 
   if (Global.user && Global.user.authcode) {
     //直接获得用户信息
@@ -204,7 +204,7 @@ AppObject.updateFormId = updateFormId;
 
 AppObject.getUserInfoMain = getUserInfoMain;
 
-AppObject.submitGEOData = function(data) {
+AppObject.submitGEOData = function (data) {
   getUserInfoMain((info) => {
     wx.request({
       url: 'https://api.fun5.cn/GEO/Submit',
@@ -220,7 +220,7 @@ AppObject.submitGEOData = function(data) {
 
 };
 
-AppObject.queryGEOData = function(data, callback) {
+AppObject.queryGEOData = function (data, callback) {
   getUserInfoMain((info) => {
     wx.request({
       url: 'https://api.fun5.cn/GEO/List',
@@ -231,7 +231,7 @@ AppObject.queryGEOData = function(data, callback) {
         radius: data.radius || 10000,
         authcode: info.authcode
       },
-      success: function(res) {
+      success: function (res) {
         callback(res.data);
       }
     });
@@ -239,7 +239,7 @@ AppObject.queryGEOData = function(data, callback) {
 };
 
 
-AppObject.removeGEOData = function(data, callback) {
+AppObject.removeGEOData = function (data, callback) {
   getUserInfoMain((info) => {
     wx.request({
       url: 'https://api.fun5.cn/GEO/Remove',
@@ -247,10 +247,10 @@ AppObject.removeGEOData = function(data, callback) {
       dataType: "json",
       data: {
         data: data,
-        project:"temap",
+        project: "temap",
         authcode: info.authcode
       },
-      success: function(res) {
+      success: function (res) {
         callback(res.data);
       }
     });
@@ -258,7 +258,7 @@ AppObject.removeGEOData = function(data, callback) {
 };
 
 
-AppObject.getDisance = function(p1, p2) {
+AppObject.getDisance = function (p1, p2) {
   let lat1 = p1.lat,
     lng1 = p1.lng,
     lat2 = p2.lat,
@@ -274,16 +274,16 @@ AppObject.getDisance = function(p1, p2) {
 };
 
 
-AppObject.getLocation = function(callback) {
+AppObject.getLocation = function (callback) {
   let that = this;
   wx.getLocation({
     type: "gcj02",
     altitude: true,
-    success: function(r) {
+    success: function (r) {
       that.Global["location"] = r;
       callback(r);
     },
-    fail: function() {
+    fail: function () {
       wx.showToast({
         title: '获取位置失败',
         icon: "none"
@@ -294,22 +294,22 @@ AppObject.getLocation = function(callback) {
 
 
 AppObject.settings = [{
-    "key": "scope.userLocation",
-    "info": "需要先同意授权地理位置"
-  },
-  {
-    "key": "scope.writePhotosAlbum",
-    "info": "需要先同意授权保存到相册"
-  },
-  {
-    "key": "scope.camera",
-    "info": "需要先同意授权摄像头"
-  }
+  "key": "scope.userLocation",
+  "info": "需要先同意授权地理位置"
+},
+{
+  "key": "scope.writePhotosAlbum",
+  "info": "需要先同意授权保存到相册"
+},
+{
+  "key": "scope.camera",
+  "info": "需要先同意授权摄像头"
+}
 ];
 
 
 
-AppObject.initSetting = function(key) {
+AppObject.initSetting = function (key) {
   let that = this;
   wx.getSetting({
     success(res) {
@@ -323,7 +323,7 @@ AppObject.initSetting = function(key) {
   });
 };
 
-AppObject.initSettingItem = function(res, i) {
+AppObject.initSettingItem = function (res, i) {
   let that = this;
   let sett = that.settings[i];
   if (!res.authSetting[sett.key]) {
@@ -342,7 +342,7 @@ AppObject.initSettingItem = function(res, i) {
   }
 };
 
-AppObject.initSettingAll = function() {
+AppObject.initSettingAll = function () {
   let that = this;
   wx.getSetting({
     success(res) {
@@ -353,11 +353,24 @@ AppObject.initSettingAll = function() {
   });
 };
 
+AppObject.getDateFromTS = function (ts) {
+  var now = new Date();
+  var tspan = now.getTime() - ts;
+  var thour = tspan / 1000 / 3600;
 
+  if (thour >= 0 && thour < 1) {
+    return "刚刚";
+  } else if (thour >= 1 && thour < 24) {
+    return Math.floor(thour) + '小时前';
+  } else if (thour > 24) {
+    var date = new Date(ts);
+    return date.getFullYear() + '/' + (date.getMonth() + 1) + '/' + date.getDate();
+  }
+}
 
-AppObject.onLaunch = function() {
+AppObject.onLaunch = function () {
   getUserInfoMain((info) => {
-
+    
   });
   this.initSettingAll();
 };

@@ -24,10 +24,11 @@ exports.main = async (event, context) => {
 
 
   //删除7天前数据
+  /*
   db.collection('info').where({
     date: cmd.lt(now.getTime() - 7 * 24 * 60 * 60 * 1000)
   }).remove();
-
+*/
 
 
   //let temdate = new Date();

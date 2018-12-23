@@ -70,16 +70,18 @@
 
   <view style="width:96%;margin:10px auto">
     <view style="color:#ccc;font-size:13px;text-align:center">10小时内仅可以发布一条信息，重复发送将覆盖</view>
-    <button class="weui-btn" form-type='submit' type="primary">发布</button>
+    <button disabled='{{disabledsubmit}}' class="weui-btn" form-type='submit' type="primary">发布</button>
     <button class="weui-btn" form-type='reset'>重置</button>
 
   </view>
 
 </form>
 
+<!--
 <view class="weui-footer">
   <view class="weui-footer__links">
     <navigator url="" class="weui-footer__link">底部链接</navigator>
   </view>
   <view class="weui-footer__text">Copyright © 2008-2016 weui.io</view>
 </view>
+-->

@@ -3,7 +3,7 @@ const app = getApp()
 
 Page({
   data: {
-    scale: 14,
+    scale: 12,
     markers: [],
     scrollTop: 0
   },
@@ -47,14 +47,14 @@ Page({
               lng: e.southwest.longitude
             };
             let dis = app.getDisance(p1, p2);
-            if (dis > 30 * 1000) {
+            if (dis > 80 * 1000) {
 
               wx.showToast({
                 title: '当前范围太大，请缩小范围',
                 icon: "none",
                 success: function () {
                   that.setData({
-                    scale: 14
+                    scale: 12
                   });
                 }
               });
@@ -106,27 +106,28 @@ Page({
                       var markers = [];
                       for (var i = 0; i < resultArray.length; i++) {
                         let ent = resultArray[i];
+                        ent.icon = "/style/imgs/p-" + ent.catekey + ".png";
+                        ent.date = app.getDateFromTS(ent.date);
 
                         markers.push({
                           id: ent._id,
                           latitude: ent.lat,
                           longitude: ent.lng,
-                          iconPath: "/style/imgs/p-" + ent.catekey + ".png",
-                          width: 30,
-                          height: 30,
+                          iconPath: ent.icon,
+                          width: 25,
+                          height: 25,
                           label: {
-                            content: ent.title,
-                            fontSize: 14,
+                            content: ' '+ent.title+' ',
+                            fontSize: 11,
                             color: "#fff",
-                            bgColor: "#aaa",
-                            padding: 2,
+                            bgColor: "#F24056",
+                            padding: 1,
                             borderRadius: 3,
-                            anchorX: -25,
-                            anchorY: -56
+                            anchorX: -20,
+                            anchorY: -40
                           }
                         });
                       }
-
 
                       that.setData({
                         markers: markers,

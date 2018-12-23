@@ -17,6 +17,9 @@ Page({
   onLoad: function (options) {
     let that = this;
     let id = options.id;
+    that.setData({
+      dataid: id
+    });
     wx.cloud.init();
     wx.cloud.callFunction({
       name: 'querydetail',
@@ -27,23 +30,27 @@ Page({
 
         let ent = r.result.result;
 
+        app.getUserInfoMain((info) => {
+          that.initUserInfo(info.openid);
+        });
+
         that.setData({
           markers: [{
             id: ent._id,
             latitude: ent.lat,
             longitude: ent.lng,
             iconPath: "/style/imgs/p-" + ent.catekey + ".png",
-            width: 30,
-            height: 30,
+            width: 25,
+            height: 25,
             label: {
-              content: ent.title,
-              fontSize: 14,
+              content: ' ' + ent.title + ' ',
+              fontSize: 11,
               color: "#fff",
-              bgColor: "#aaa",
-              padding: 2,
+              bgColor: "#F24056",
+              padding: 1,
               borderRadius: 3,
-              anchorX: -25,
-              anchorY: -56
+              anchorX: -20,
+              anchorY: -40
             }
           }],
           info: ent,
@@ -54,6 +61,18 @@ Page({
       }
     });
   },
+  doZan: function (e) {
+    let that = this;
+    if (that.data.userinfo) {
+      let qrcode = that.data.userinfo.qrcode;
+      if (qrcode) {
+        wx.previewImage({
+          urls: [qrcode],
+          current: qrcode
+        });
+      }
+    }
+  },
   doPreview: function (e) {
     let src = e.currentTarget.dataset.src;
     wx.previewImage({
@@ -62,8 +81,26 @@ Page({
     })
   },
 
-  doFav: function () {
+  doFav: function (e) {
     //收藏
+
+    let that = this;
+    console.log(that.data.dataid);
+
+    wx.cloud.init();
+    wx.cloud.callFunction({
+      name: 'doinfofav',
+      data: {
+        id: that.data.dataid
+      },
+      complete: res => {
+        console.log(res);
+        wx.showToast({
+          title: '收藏成功'
+        })
+      }
+    });
+
   },
   goNavi: function () {
     let that = this;
@@ -72,6 +109,24 @@ Page({
       longitude: that.data.longitude
     });
 
+  },
+
+  initUserInfo: function (openid) {
+    let that = this;
+    wx.cloud.init();
+    wx.cloud.callFunction({
+      name: 'queryuserinfo',
+      data: {
+        openid
+      },
+      complete: res => {
+        console.log(res);
+
+        that.setData({
+          userinfo: res.result.result
+        });
+      }
+    });
   },
 
   /**

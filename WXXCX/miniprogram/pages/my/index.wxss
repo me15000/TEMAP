@@ -17,3 +17,8 @@ page {
 .main {
  height: 100%;
 }
+.itemdate{
+  font-size:11px;
+  color:#ccc;
+  padding:5px;
+}

@@ -173,6 +173,10 @@ Page({
     }
     //that.is_submit = true;
 
+    that.setData({
+      disabledsubmit: true
+    });
+
     that.submitData({
       title,
       catekey,
@@ -196,7 +200,7 @@ Page({
         formid: data.formid
       },
       complete: res => {
-        
+
         if (!res.result.result) {
           wx.showToast({
             title: '发生错误',

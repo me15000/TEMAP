@@ -5,6 +5,8 @@ cloud.init()
 
 // 云函数入口函数
 exports.main = async(event, context) => {
+  const wxContext = cloud.getWXContext()
+
   let id = event.id;
 
   const db = cloud.database();
@@ -19,7 +21,6 @@ exports.main = async(event, context) => {
     dataentity = qresult.data[0];
   }
 
-  const wxContext = cloud.getWXContext()
 
   return {
     event,

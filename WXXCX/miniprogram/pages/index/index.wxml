@@ -1,17 +1,17 @@
 <!--index.wxml-->
 <view class="container">
-  <map class="map" id="map" longitude="{{longitude||113.324520}}" latitude="{{latitude||23.099994}}" scale="{{scale||14}}" markers="{{markers}}" show-location="true" enable-zoom="true" bindmarkertap="bindmarkertap" bindregionchange="bindregionchange"></map>
+  <map class="map" id="map" longitude="{{longitude||113.324520}}" latitude="{{latitude||23.099994}}" scale="{{scale||12}}" markers="{{markers}}" show-location="true" enable-zoom="true" bindmarkertap="bindmarkertap" bindregionchange="bindregionchange"></map>
 
   <scroll-view class="main" scroll-y scroll-top="{{scrollTop}}">
 
 
     <view class="weui-cells__title">当前位置附近活动</view>
     <view class="weui-cells weui-cells_after-title">
-      <navigator url="/pages/detail/index?id={{item.id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{markers}}">
+      <navigator url="/pages/detail/index?id={{item._id}}" class="weui-cell weui-cell_access" hover-class="weui-cell_active" wx:for="{{datalist}}">
         <view class="weui-cell__hd">
-          <image src="{{item.iconPath}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
+          <image src="{{item.icon}}" style="margin-right: 5px;vertical-align: middle;width:20px; height: 20px;"></image>
         </view>
-        <view class="weui-cell__bd">{{item.label.content}}</view>
+        <view class="weui-cell__bd">{{item.title}}<text class="itemdate">{{item.date}}</text></view>
         <view class="weui-cell__ft weui-cell__ft_in-access">详情</view>
       </navigator>
     </view>

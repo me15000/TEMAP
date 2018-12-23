@@ -30,9 +30,9 @@
   "window": {
     "backgroundColor": "#f8f8f8",
     "backgroundTextStyle": "light",
-    "navigationBarTitleText": "特价地图",
+    "navigationBarTitleText": "点点地图",
 
-    "navigationBarBackgroundColor": "#ff5722",    
+    "navigationBarBackgroundColor": "#F24056",    
     "navigationBarTextStyle": "light"
   }
 }

@@ -26,3 +26,9 @@ page {
   flex: 1;
   height: auto;
 }
+
+.itemdate{
+  font-size:11px;
+  color:#ccc;
+  padding:5px;
+}

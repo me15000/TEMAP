@@ -2,19 +2,18 @@
 
 <view class="container">
 
-  <map class="map" id="map" longitude="{{longitude||113.324520}}" latitude="{{latitude||23.099994}}" scale="14" markers="{{markers}}" show-location="true" enable-zoom="true" bindmarkertap="bindmarkertap" bindregionchange="bindregionchange"></map>
+  <map class="map" id="map" longitude="{{longitude||113.324520}}" latitude="{{latitude||23.099994}}" scale="12" markers="{{markers}}" show-location="true" enable-zoom="true" bindmarkertap="bindmarkertap" bindregionchange="bindregionchange"></map>
 
 
   <view class="button-sp-area">
     <button bindtap="goNavi" style='margin-right:5px;' class="weui-btn mini-btn" type="primary" size="mini">导航</button>
     <button open-type='share' style='margin-right:5px;' class="weui-btn mini-btn" type="primary" size="mini">分享</button>
     <button bindtap="doFav" style='margin-right:5px;' class="weui-btn mini-btn" type="default" size="mini">收藏</button>
-    <button style='margin-right:5px;' class="weui-btn mini-btn" type="warn" size="mini">赞赏</button>
+    <button bindtap="doZan" style='margin-right:5px;' class="weui-btn mini-btn" type="warn" size="mini">赞赏</button>
   </view>
 
   <view class="weui-article">
     <view class="weui-article__h1">{{info.title}}</view>
-
     <view class="weui-article__section">
       <view class="weui-article__title">有图有真相</view>
       <view class="weui-article__p">
